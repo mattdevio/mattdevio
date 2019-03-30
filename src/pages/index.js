@@ -1,3 +1,11 @@
-import React from "react"
+// Vendor Imports
+import React from 'react';
+import styled from 'styled-components';
 
-export default () => <div>Hello world!</div>
+// Custom Imports
+
+
+export default () => (
+  <h1>Hello World</h1>
+);
+
