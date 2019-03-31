@@ -1,11 +1,98 @@
 // Vendor Imports
-import React from 'react';
-import styled from 'styled-components';
+import React, { Component } from 'react';
+import { Helmet } from 'react-helmet';
+import { graphql, withPrefix } from 'gatsby';
 
 // Custom Imports
+import Layout from '../layout/index';
+import Header from '../components/Header';
+import SiteHero from '../components/SiteHero';
+import AboutMe from '../components/AboutMe';
+import Projects from '../components/Projects';
+import BlogHighlightContact from '../components/BlogHighlightContact';
+import Footer from '../components/Footer';
 
+class Landing extends Component {
+  constructor (props) {
+    super(props);
+    this.state = {
+      menuIsOpen: false,
+    };
+    this.aboutMeRef = React.createRef();
+    this.projectsRef = React.createRef();
+    this.blogRef = React.createRef();
+    this.contactRef = React.createRef();
+    this.handleNavClick = this.handleNavClick.bind(this);
+    this.handleMenuClick = this.handleMenuClick.bind(this);
+  }
 
-export default () => (
-  <h1>Hello World</h1>
-);
+  handleNavClick (id) {
+    this[id].current.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'center',
+    });
+  }
 
+  handleMenuClick () {
+    this.setState({
+      menuIsOpen: !this.state.menuIsOpen,
+    });
+  }
+
+  render () {
+    const { data } = this.props;
+    const { menuIsOpen } = this.state;
+    return (
+      <Layout>
+        <Helmet>
+          <title>{data.site.siteMetadata.title}</title>
+          <link rel='shortcut icon' type='image/png' href={withPrefix('/images/favicon.png')} />
+          <link rel='stylesheet' href={withPrefix('/css/normalize.css')} />
+          <link rel='stylesheet' href={withPrefix('/css/base.css')} />
+          <link rel='stylesheet' href={data.site.siteMetadata.typekit} />
+        </Helmet>
+        <Header
+          onNavClick={ this.handleNavClick }
+          menuIsOpen={ menuIsOpen }
+          handleMenuClick={ this.handleMenuClick }
+        />
+        <SiteHero menuIsOpen={ menuIsOpen } />
+        <AboutMe ref={ this.aboutMeRef } />
+        <Projects ref={ this.projectsRef } />
+        <BlogHighlightContact
+          postData={ data.allMarkdownRemark.edges[0].node }
+          blogRef={ this.blogRef }
+          contactRef={ this.contactRef }
+        />
+        <Footer onNavClick={ this.handleNavClick } />
+      </Layout>
+    );
+  }
+}
+
+export default Landing;
+
+export const query = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+        typekit
+      }
+    }
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      totalCount
+      edges {
+        node {
+          id
+          frontmatter {
+            title
+            date(formatString: "DD MMMM, YYYY")
+          }
+          excerpt
+        }
+      }
+    }
+  }
+`;

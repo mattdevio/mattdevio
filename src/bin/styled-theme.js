@@ -1,17 +1,17 @@
-/*----------  Vendor Imports  ----------*/
+// Vendor Imports
 import { css } from 'styled-components';
 
 /**
- * generateMediaMixin - Constructo media queries based
+ * generateMediaMixin - Construct media queries based
  * @param  {object} sizes [Key value pair of label to pixel size]
  * @return {object}       [Mixin functions]
  */
-export function generateMediaMixin(sizes) {
+export function generateMediaMixin (sizes) {
   return Object.keys(sizes).reduce((acc, label) => {
-    const mediaString = `(min-width:${sizes[label] / 16}em)`;
+    const mediaString = `(max-width:${ sizes[label] / 16 }em)`;
     acc[label] = (...args) => css`
-      @media ${mediaString} {
-        ${css(...args)}
+      @media ${ mediaString } {
+        ${ css(...args) }
       }
     `;
     acc[label].toString = () => mediaString;
@@ -23,7 +23,7 @@ export function generateMediaMixin(sizes) {
 /**
  * moolahlahTheme - a styled component theme object
  */
-export const moolahlahTheme = {
+export const matdevioTheme = {
   ...generateMediaMixin({
     small: 550,
     medium: 780,
@@ -31,7 +31,8 @@ export const moolahlahTheme = {
   }),
   typeFont: 'Hypatia Sans Pro, Helvetica, sans-serif',
   accentFont: 'Uppercut Angle',
-  siteMaxWidth: '96rem',
+  headerFont: 'program, sans-serif',
+  siteMaxWidth: '120rem',
   white: '#FFFFFF',
   black: '#0B132B',
   navy: '#1C2541',
