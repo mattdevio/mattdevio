@@ -1,6 +1,6 @@
 // Vendor Imports
 import React, { Component } from 'react';
-import { Helmet } from 'react-helmet';
+
 import { graphql, withPrefix } from 'gatsby';
 
 // Custom Imports
@@ -45,13 +45,6 @@ class Landing extends Component {
     const { menuIsOpen } = this.state;
     return (
       <Layout>
-        <Helmet>
-          <title>{data.site.siteMetadata.title}</title>
-          <link rel='shortcut icon' type='image/png' href={withPrefix('/images/favicon.png')} />
-          <link rel='stylesheet' href={withPrefix('/css/normalize.css')} />
-          <link rel='stylesheet' href={withPrefix('/css/base.css')} />
-          <link rel='stylesheet' href={data.site.siteMetadata.typekit} />
-        </Helmet>
         <Header
           onNavClick={ this.handleNavClick }
           menuIsOpen={ menuIsOpen }
@@ -89,6 +82,7 @@ export const query = graphql`
           frontmatter {
             title
             date(formatString: "DD MMMM, YYYY")
+            path
           }
           excerpt
         }

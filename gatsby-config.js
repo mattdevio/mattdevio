@@ -12,7 +12,13 @@ module.exports = {
         path: `${ __dirname }/src/`,
       },
     },
-    'gatsby-transformer-remark',
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        path: `${ __dirname }/src/posts/`,
+        name: 'posts',
+      },
+    },
   ],
   pathPrefix: '/mattdevio'
 };

@@ -1,6 +1,7 @@
 // Vendor Imports
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Link, withPrefix } from 'gatsby';
 
 // Custom Import
 import PageWrapper from './PageWrapper';
@@ -19,7 +20,9 @@ const BlogHighlightContact = ({ postData, blogRef, contactRef }) => (
         </PostTitleDate>
         <PostExcerpt>
           { postData.excerpt }
-          <ReadMore />
+          <ReadMore
+            to={ withPrefix(postData.frontmatter.path) }
+          />
         </PostExcerpt>
       </BlogHighlight>
       <ContactForm contactRef={ contactRef } />
@@ -82,7 +85,7 @@ const PostExcerpt = styled.p`
   ` }
 `;
 
-const ReadMore = styled.a.attrs({
+const ReadMore = styled(Link).attrs({
   children: 'Read More'
 })`
   font-size: 2rem;

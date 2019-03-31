@@ -1,4 +1,5 @@
 ---
+path: "/blog/normalizing+api+responses"
 title: Normalizing API Responses
 date: 2019-03-28
 published: true
