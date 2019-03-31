@@ -21,7 +21,7 @@ export default ({ data }) => {
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </PageWrapper>
-      <Footer />
+      <Footer onNavClick={ () => navigate(withPrefix('/')) } />
     </Layout>
   );
 };

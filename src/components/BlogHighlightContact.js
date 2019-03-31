@@ -162,7 +162,7 @@ const TextInput = styled.input`
   display: block;
   width: 100%;
   font-size: 2rem;
-  background-color: ${ ({ theme }) => theme.black }
+  background-color: ${ ({ theme }) => theme.black };
   font-family: ${ ({ theme }) => theme.typeFont };
   color: ${ ({ theme }) => theme.white };
   padding: 0.7rem;
@@ -178,7 +178,7 @@ const MessageBody = styled.textarea`
   display: block;
   width: 100%;
   font-size: 2rem;
-  background-color: ${ ({ theme }) => theme.black }
+  background-color: ${ ({ theme }) => theme.black };
   font-family: ${ ({ theme }) => theme.typeFont };
   color: ${ ({ theme }) => theme.white };
   padding: 0.5rem 0.5rem 0 0.5rem;
@@ -193,7 +193,7 @@ const MessageBody = styled.textarea`
 const SubmitButton = styled.button`
   border: 2px solid ${ ({ theme }) => theme.black };
   font-size: 2rem;
-  background-color: ${ ({ theme }) => theme.greyblue }
+  background-color: ${ ({ theme }) => theme.greyblue };
   font-family: ${ ({ theme }) => theme.typeFont };
   color: ${ ({ theme }) => theme.white };
   font-weight: 700;
